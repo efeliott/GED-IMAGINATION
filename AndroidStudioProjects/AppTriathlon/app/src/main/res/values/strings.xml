@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">AppTriathlon</string>
-    <string name="libTitre">SCHOOL TRIATHLON</string>
-    <string name="libNom">Teacher :</string>
-    <string name="libOK">BEGIN</string>
-    <string name="debutMessage">Welcome</string>
-</resources>
