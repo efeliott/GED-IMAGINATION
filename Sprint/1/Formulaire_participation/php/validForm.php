@@ -5,6 +5,9 @@
 -->
 
 <?php
+    // Appel de mon fichier fonction pour me connecter à la base de donnée
+    require '../php/fonction.inc.php';
+
     //verifie si le boutton submit a bien été actioner
     if(isset($_POST['submit']))
     {
@@ -14,17 +17,32 @@
         {
             // Création de variable pour simplifier le travail
             $file = $_FILES['photo'];
-            $fileName = $file['name'];
+            $file_name = $file['name'];
+            $file_size = $file['size'];
             
             $file_tmp_name = $_FILES['photo']['tmp_name'];
-            $file_dest = 'upload/'.$fileName;
+            $file_dest = '../upload/'.$file_name;
 
             // Bloquage des fichiers qui ne correspondent pas au niveau des extensions
-            if(pathinfo($fileName, PATHINFO_EXTENSION) = 'png' || pathinfo($fileName, PATHINFO_EXTENSION) = 'jpg' || pathinfo($fileName, PATHINFO_EXTENSION) = 'jpeg' || pathinfo($fileName, PATHINFO_EXTENSION) = 'PNG' || pathinfo($fileName, PATHINFO_EXTENSION) = 'JPG' || pathinfo($fileName, PATHINFO_EXTENSION) = 'JPEG')
+            if(pathinfo($file_name, PATHINFO_EXTENSION) == 'png' || pathinfo($file_name, PATHINFO_EXTENSION) == 'jpg' || pathinfo($file_name, PATHINFO_EXTENSION) == 'jpeg' 
+            || pathinfo($file_name, PATHINFO_EXTENSION) == 'PNG' || pathinfo($file_name, PATHINFO_EXTENSION) == 'JPG' || pathinfo($file_name, PATHINFO_EXTENSION) == 'JPEG')
             {
-                if(move_uploaded_file($file_tmp_name, $file_dest))
+                if($file_size < 300000)
                 {
-                    echo "ok up";
+                    // Si l'extension de fichiers est bonne et que le poid correspond on envoie la photo vers le server web
+                    if(move_uploaded_file($file_tmp_name, $file_dest) && $_FILES['photo']['error'] == 0)
+                    {
+                        $req = $cnx->prepare('INSERT INTO realisation(name_photo, url_photo) VALUES(?,?)');
+                        $req->execute(array($file_name, $file_dest));
+                    }
+                    else
+                    {
+                        echo "Une erreur est survenue lors de la publication de votre réalisation";
+                    }
+                }
+                else
+                {
+                    echo "Photo trop volumineuse";
                 }
             }
             else
