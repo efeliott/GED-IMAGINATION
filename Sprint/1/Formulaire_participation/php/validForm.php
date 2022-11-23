@@ -20,6 +20,7 @@
             $file_name = $file['name'];
             $file_size = $file['size'];
             
+            
             $file_tmp_name = $_FILES['photo']['tmp_name'];
             $file_dest = '../upload/'.$file_name;
 
@@ -47,10 +48,14 @@
             }
             else
             {
-                echo "Extension de fichiers son acceptée";
+                echo "Extension de fichiers non acceptée";
                 // header('Location: http://localhost/Formulaire_participation/');
                 // exit();
             }
+        }
+        else
+        {
+            echo "Information(s) manquante(s)"
         }
     }
 ?>

@@ -45,6 +45,7 @@ body{
     isolation: isolate;
 }
 
+/* Stylisation du titre */
 .form .form_title{
     color: #fff;
     display: flex;
@@ -53,6 +54,7 @@ body{
     margin-bottom: 2rem;
 }
 
+/* Stylisation de la zone de dépot de la photo */
 .form_input_file{
     display: block;
     text-align: center;
@@ -66,6 +68,7 @@ body{
     padding-top: .5rem;
 }
 
+/* Stylisation de l'icon upload */
 .form_input_file i{
     font-size: 3.8rem;
     margin-top: 15px;
@@ -73,10 +76,13 @@ body{
     cursor: pointer;
 }
 
+/* Stylisation de l'input de depot de la photo */
 .form_input_file input{
     margin-top: 10px;
+    cursor: pointer;
 }
 
+/* Stylisation des zones de saisie du titre, description, date de deubut et date de fin */
 .form_input{
     position: relative;
     display: flex;
@@ -88,6 +94,7 @@ body{
     border-radius: 3rem;
 }
 
+/* Stylisation des input directement pour se findre dans le fond */
 .form_input .input-title{
     border: none;
     width: 100%;
@@ -95,17 +102,20 @@ body{
     background-color: var(--input-color);
 }
 
+/* Stylisation des ecritures dans les input */
 .form_input .input-title::placeholder{
     color: #CE5858;
     font-size: 1.5rem;
 }
 
+/* Stylisation de la zone de saisie de la description */
 .form_input textarea{
     height: 100px;
     resize: none;
     padding-left: 5px;
 }
 
+/* Stylisation du boutton de validation */
 .form_button{
     margin-top: 3rem;
     display: block;
@@ -120,6 +130,7 @@ body{
     border-radius: 3rem;
 }
 
+/* Effet zoom au passage du curseur sur le boutton valider */
 .form_button:hover{
     transform: scale(1.1);
     transition: ease .1s;

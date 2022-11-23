@@ -16,24 +16,32 @@
     <title>Poster une réalisation</title>
 </head>
 <body>
+    <!-- Div contenant le formulaire -->
     <div class="form">
         <span class="form_title">Votre réalisation</span>
+        <!-- Formulaire pour le dépot des cractéristiques de la réalisation du participant -->
         <form action="../Formulaire_participation/php/validForm.php" method="post" enctype="multipart/form-data">
+            <!-- Case pour déposer la photo -->
             <div class="form_input_file">
                 <span>Charger votre photo ici (png, jpg, jpeg) : </span>
+                <!-- icon upload -->
                 <label for="photo"><div><i class='bx bx-cloud-upload'></i></div></label>
                 <input type="file" name="photo" id="photo" accept="image/png, image/jpeg, image/jpg" required>
             </div>
+            <!-- Case pour le titre -->
             <div class="form_input">
                 <input type="text" placeholder="Titre" class="input-title" name="titre" required>
             </div>
+            <!-- Zone de saisie de la description -->
             <div class="form_input">
-                <textarea type="text" placeholder="Description" class="input-title d" name="description" required></textarea>
+                <textarea type="text" placeholder="Description" class="input-title" name="description" required></textarea>
             </div>
+            <!-- Zone de saisie de la date de début des travaux -->
             <div class="form_input">
                 <span>Début des travaux : </span>
                 <input type="date" name="debut" required>
             </div>
+            <!-- Zone de saisie de la date de fin des travaux -->
             <div class="form_input">
                 <span>Fin des travaux : </span>
                 <input type="date" name="fin" required>
