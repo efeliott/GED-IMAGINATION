@@ -1,14 +1,17 @@
 <!--
-    Page crée le 18/11/2022 par Eliott FERTILLE dans le cadre du projet GED'IMAGINATION en 2ème année de BTS
+    Page crée le 17/11/2022 par Eliott FERTILLE dans le cadre du projet GED'IMAGINATION en 2ème année de BTS
     Cette page a pour but de contenir les fonctions nécessaire au code php du projet GED'IMAGINATION
-    Dernière modif : 24/11/2022
+    Dernière modif : 27/11/2022
 -->
 
 <?php
-    // Appel du fichier db.inc.php qui donne les info de bdd dans l'objet PDO
-    require 'db.inc.php';
 
-    //On essaie de se connecter
+    /*=====--- Fonction de connexion à la base de donnée ---=====*/
+    function dbConnector()
+    {
+      // Appel du fichier db.inc.php qui donne les info de bdd dans l'objet PDO
+      require 'db.inc.php';
+      //On essaie de se connecter
       try{
         $cnx = new PDO("mysql:host=$servername;dbname=bdd_gedimagination", $username, $password);
         //On définit le mode d'erreur de PDO sur Exception
@@ -21,15 +24,35 @@
         echo "Erreur : " . $e->getMessage();
       }
 
-      function getDates()
-      {
-        $result = $cnx->query('SELECT * FROM concours');
+      // On retourne la variable qui contient l'objet PDO de connexion
+      return $cnx;
+    };
 
-        while($data = $result-fetch(PDO::FETCH_ASSOC))
-        {
-          $date_part_debut = $data['participation_debut'];
-          $date_part_fin = $data['participation_fin'];
-        }
-        return ($date_part_debut );
-      };
+    /*=====--- Fonction qui permet de vérifier si la participation n'est pas hors période ---=====*/
+    function datesConcours($date_participation)
+    {
+      // Execution de la requète permettant de connaitre les dates de participation du concours
+      $request = dbConnector()->query('SELECT * FROM concours');
+
+      // Variable conntenant le resulatat du de la fonction
+      $result = false;
+
+      // Organisation du résultat de la requète dans un tableau associatif
+      while($data = $request->fetch(PDO::FETCH_ASSOC))
+      {
+        // Variable de la date de début de la période de participation autorisée
+        $date_part_debut = $data['participation_debut'];
+        // Variable de la date de fin de la période de participation autorisée
+        $date_part_fin = $data['participation_fin'];
+      }
+      
+      // On vérifie que la date de participation est bien comprise dans les temps impartie
+      if($date_part_debut <= $date_participation && $date_participation <= $date_part_fin)
+      {
+        $result = true;
+      }
+
+      // On retourne la variable qui indique avec true ou false si la date est bonne
+      return $result;
+    };
 ?>

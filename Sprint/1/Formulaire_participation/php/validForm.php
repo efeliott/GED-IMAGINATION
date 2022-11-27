@@ -1,7 +1,7 @@
 <!--
     Page crée le 10/11/2022 par Eliott FERTILLE dans le cadre du projet GED'IMAGINATION en 2ème année de BTS
     Cette page a pour but de traiter les données du formulaire de publication de réalisation du jeu concours de Gédimat
-    Dernière modif : 24/11/2022
+    Dernière modif : 27/11/2022
 -->
 
 <?php
@@ -28,9 +28,7 @@
             // Contient la date du jour
             $date_ajd = date('Y/m/d');
 
-            var_dump(getDates());
-            
-            
+
             // Contient le nom temporaire de la photo en attendant de la stocé définitivement dans le dossier upload
             $file_tmp_name = $_FILES['photo']['tmp_name'];
             // Donne la destination d'upload de la photo
@@ -47,7 +45,7 @@
                     if(move_uploaded_file($file_tmp_name, $file_dest) && $_FILES['photo']['error'] == 0)
                     {
                         // Insertion de l'url de la photo et de son nom vers la bdd
-                        $req = $cnx->prepare('INSERT INTO realisation(photo_name, photo_url) VALUES(?,?)');
+                        $req = dbConnector()->prepare('INSERT INTO realisation(photo_name, photo_url) VALUES(?,?)');
                         $req->execute(array($file_name, $file_dest));
                     }
                     else
@@ -66,14 +64,14 @@
             }
             /* =====--- Fin traitement de la photo ---===== */
             
-            // if(getDates($date_part_debut) < $date_ajd > getDates($date_part_fin))
-            // {
-                
-            // }
-            // else
-            // {
-            //     echo "pas les bonnes dates";
-            // }
+            if(datesConcours($date_ajd) == true)
+            {
+                echo "C'est bon";
+            }
+            else
+            {
+                echo "Nous ne sommes pas dans la période de participation";
+            }
         }
         else
         {
