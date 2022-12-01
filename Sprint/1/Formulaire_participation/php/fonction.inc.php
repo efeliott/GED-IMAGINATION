@@ -1,11 +1,12 @@
 <!--
     Page crée le 17/11/2022 par Eliott FERTILLE dans le cadre du projet GED'IMAGINATION en 2ème année de BTS
     Cette page a pour but de contenir les fonctions nécessaire au code php du projet GED'IMAGINATION
-    Dernière modif : 27/11/2022
+    Dernière modif : 01/12/2022
 -->
 
 <?php
 
+    $id = 2;
     /*=====--- Fonction de connexion à la base de donnée ---=====*/
     function dbConnector()
     {
@@ -30,14 +31,30 @@
 
 
 
+    function extensionVerif($file_name)
+    {
+        $result = false;
+        
+        if(pathinfo($file_name, PATHINFO_EXTENSION) == 'png' || pathinfo($file_name, PATHINFO_EXTENSION) == 'jpg' || pathinfo($file_name, PATHINFO_EXTENSION) == 'jpeg' 
+        || pathinfo($file_name, PATHINFO_EXTENSION) == 'PNG' || pathinfo($file_name, PATHINFO_EXTENSION) == 'JPG' || pathinfo($file_name, PATHINFO_EXTENSION) == 'JPEG')
+        {
+            $result = true;
+        }
+        
+        return $result;
+        
+    };
+
+
+
     /*=====--- Fonction qui permet de vérifier si la participation n'est pas hors période ---=====*/
     function datesConcours($date_participation)
     {
-        // Execution de la requète permettant de connaitre les dates de participation du concours
-        $request = dbConnector()->query('SELECT * FROM concours');
-
         // Variable conntenant le resulatat du de la fonction
         $result = false;
+        
+        // Execution de la requète permettant de connaitre les dates de participation du concours
+        $request = dbConnector()->query('SELECT * FROM concours');
 
         // Organisation du résultat de la requète dans un tableau associatif
         while($data = $request->fetch(PDO::FETCH_ASSOC))
@@ -48,13 +65,14 @@
             $date_part_fin = $data['participation_fin'];
         }
         
+        
         // On vérifie que la date de participation est bien comprise dans les temps impartie
         if($date_part_debut <= $date_participation && $date_participation <= $date_part_fin)
         {
             $result = true;
         }
 
-        // On retourne la variable qui indique avec true ou false si la date est bonne
+        // On retourne la variable qui indique avec true si la date est bonne et false dans le cas contraire
         return $result;
     };
 
@@ -95,5 +113,13 @@
         }
 
         return $participe;
+    };
+
+
+
+    function sendReal($file_dest, $file_name_bdd, $titre, $descriptif, $date_debut, $date_fin, $date_ajd, $id)
+    {
+        $req = dbConnector()->prepare('INSERT INTO realisation(photo_url, photo_name, titre, descriptif, date_debut, date_fin, date_participation, id_utilisateur) VALUES(?,?,?,?,?,?,?,?)');
+        $req->execute(array($file_dest, $file_name_bdd, $titre, $descriptif, $date_debut, $date_fin, $date_ajd, $id));
     };
 ?>

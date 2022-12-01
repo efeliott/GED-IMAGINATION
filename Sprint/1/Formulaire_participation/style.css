@@ -28,15 +28,13 @@ body{
     background-attachment: fixed;
 }
 
-/* ==================== index.html ==================== */
+/* ==================== index.php ==================== */
 
 .form{
-    position: relative;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 612px;
-    margin-left: 20rem;
-    margin-top: 15rem;
-    max-width: 400px;
     padding: 5rem 0;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -58,7 +56,7 @@ body{
 
 /* Stylisation de la zone de dépot de la photo */
 .form_input_file{
-    display: block;
+    
     text-align: center;
     justify-content: center;
     background-color: var(--input-color);
@@ -138,16 +136,28 @@ body{
     transition: ease .1s;
 }
 
-/* ==================== END index.html ==================== */
+/* ==================== END index.php ==================== */
 
 /* ==================== welcome.php ==================== */
+
+.user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    border-radius: 3rem;
+    padding-left: 1rem;
+    margin-top: 12.5%;
+    margin-bottom: 15px;
+    background-color: var(--form-color);
+    margin-left: 47.5%;
+}
 
 .verif_participation{
     position: relative;
     display: block;
     text-align: center;
     width: 70rem;
-    margin-top: 20%;
     margin-left: 30%;
     padding: 5rem;
     border-radius: 2.5rem;

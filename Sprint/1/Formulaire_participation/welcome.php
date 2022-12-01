@@ -1,11 +1,10 @@
 <!--
     Page crée le 27/11/2022 par Eliott FERTILLE dans le cadre du projet GED'IMAGINATION en 2ème année de BTS
     Le but de cette page est de vérifier préalablement si l'utilisateur a déjà participé ou pas.
-    Dernière modif : 27/11/2022
+    Dernière modif : 01/12/2022
 -->
 <?php
     require 'php\fonction.inc.php';
-    $id = 2;
 ?>
 
 <!DOCTYPE html>
@@ -26,24 +25,34 @@
         <?php echo getPrenom($id) ?>
     </div>
     <div class="verif_participation">
-        <h1 class="verif_title">Si vous souhaitez participer, cliquer sur le bouton !</h1>
-        <button type="button" name="verif_submit">Participer</button>
+        <form action="#" method="get">
+            <h1 class="verif_title">Si vous souhaitez participer, cliquer sur le bouton !</h1>
+            <button type="submit" name="verif_submit">Participer</button>
+        </form>
     </div>
 </body>
 </html>
 
 <?php
-    if(isset($_POST['verif_submit']) && isset($_POST['hidden']))
+    $date_ajd = date('Y-m-d');
+
+    if(isset($_GET['verif_submit']))
     {
-        if(dejaParticipe($id)==false)
+        if(datesConcours($date_ajd)==true)
         {
-            $message='C\'est bon';
-            echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+            if(dejaParticipe($id)==false)
+            {
+                echo "<script>location='index.php'</script>";
+            }
+            else
+            {
+                echo '<script>alert("Vous avez déjà participé")</script>';
+            }
         }
         else
         {
-            $message='C\'est pas bon';
-            echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
-        } 
+            echo '<script>alert("Nous ne sommes pas dans la période de participation")</script>';
+        }
+         
     }
 ?>
