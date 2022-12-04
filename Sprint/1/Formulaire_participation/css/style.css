@@ -1,0 +1,211 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 9px;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #CE5858;
+    --form-color: #FF9494;
+    --input-color: #FFB4B4;
+    --text-color: #CE5858;
+}
+
+body{
+    font-size: 1.6rem;
+    background-image: url("../img/blob-scene-haikei.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+/* ==================== index.php ==================== */
+
+.form{
+    position: fixed;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40%;
+    margin-top: 15px;
+    height: 612px;
+    width: 400px;
+    padding: 5rem 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: var(--text-color);
+    background-color: var(--form-color);
+    border-radius: 3rem;
+    box-shadow: 0 1px 1rem rgba(0, 0, 0, .1);
+    isolation: isolate;
+}
+
+
+/* Stylisation du titre */
+.form .form_title{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Stylisation de la zone de dépot de la photo */
+.form_input_file{
+    
+    text-align: center;
+    justify-content: center;
+    background-color: var(--input-color);
+    color: #000;
+    height: 130px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+}
+
+/* Stylisation de l'icon upload */
+.form_input_file i{
+    font-size: 3.8rem;
+    margin-top: 15px;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Stylisation de l'input de depot de la photo */
+.form_input_file input{
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Stylisation des zones de saisie du titre, description, date de deubut et date de fin */
+.form_input{
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: var(--input-color);
+    border-radius: 3rem;
+}
+
+/* Stylisation des input directement pour se findre dans le fond */
+.form_input .input-title{
+    border: none;
+    width: 100%;
+    border-radius: 15px;
+    background-color: var(--input-color);
+}
+
+/* Stylisation des ecritures dans les input */
+.form_input .input-title::placeholder{
+    color: #CE5858;
+    font-size: 1.5rem;
+}
+
+/* Stylisation de la zone de saisie de la description */
+.form_input textarea{
+    height: 100px;
+    resize: none;
+    padding-left: 5px;
+}
+
+/* Stylisation du boutton de validation */
+.form_button{
+    margin-top: 3rem;
+    display: block;
+    margin: 2.5rem auto 3rem;
+    padding: 1rem 5rem;
+    background-color: var(--body-color);
+    color: #fff;
+    font: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3rem;
+}
+
+/* Effet zoom au passage du curseur sur le boutton valider */
+.form_button:hover{
+    transform: scale(1.1);
+    transition: ease .1s;
+}
+
+/* ==================== END index.php ==================== */
+
+.logo_container{
+    position: fixed;
+    display: block;
+}
+
+.logo img{
+    width: 200px;
+}
+
+.user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    border-radius: 3rem;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 15px;
+    background-color: var(--form-color);
+}
+
+/* ==================== welcome.php ==================== */
+
+.verif_participation{
+    position: relative;
+    display: block;
+    text-align: center;
+    width: 70rem;
+    margin-left: 30%;
+    padding: 5rem;
+    border-radius: 2.5rem;
+    background-color: var(--form-color);
+}
+
+.verif_participation .verif_title{
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.verif_participation h2{
+    text-decoration: underline;
+    color: red;
+    font-size: 2rem;
+}
+
+.verif_participation button{
+    margin-top: 3rem;
+    display: block;
+    margin: 2.5rem auto 3rem;
+    padding: 1rem 5rem;
+    background-color: var(--body-color);
+    color: #fff;
+    font: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3rem;
+}
+
+.verif_participation button:hover{
+    transform: scale(1.1);
+    transition: ease .1s;
+}
+
+/* ==================== END welcome.php ==================== */

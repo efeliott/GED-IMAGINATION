@@ -7,6 +7,6 @@
 <?php
     // db data
     $servername = 'localhost';
-    $username = 'Eliott';
-    $password = '08082003';
+    $username = 'gedimat';
+    $password = 'gedimat1234';
 ?>

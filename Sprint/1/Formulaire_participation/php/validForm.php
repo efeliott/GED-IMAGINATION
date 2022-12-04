@@ -5,8 +5,9 @@
 -->
 
 <?php
+
     // Appel de mon fichier fonction pour me connecter à la base de donnée
-    require '../php/fonction.inc.php';
+    require 'fonction.inc.php';
 
     // Definition d'une constante pour le poid maximum accepté pour la photo
     define("MAX_FILE_SIZE", 10485760);
@@ -15,8 +16,9 @@
     if(isset($_POST['submit']))
     {
         // Verifie si une photo a été déposée
-        if(isset($_FILES['photo']) && !empty($_FILES['photo']) && isset($_POST['titre']) && !empty($_POST['titre']) && isset($_POST['descriptif']) && !empty($_POST['descriptif']) 
-        && isset($_POST['debut']) && !empty($_POST['debut']) && isset($_POST['fin']) && !empty($_POST['fin']))
+        if(isset($_FILES['photo']) && !empty($_FILES['photo']) && isset($_POST['titre']) && !empty($_POST['titre']) 
+        && isset($_POST['descriptif']) && !empty($_POST['descriptif']) && isset($_POST['debut']) && !empty($_POST['debut']) 
+        && isset($_POST['fin']) && !empty($_POST['fin']))
         {
             /* =====--- Création de variable pour simplifier le travail ---===== */                            
             // contient les infos sur la photo déposé par le participant                               
@@ -36,7 +38,9 @@
             // Date du debut des travaux                               
             $date_debut = $_POST['debut'];                             
             // Date de fin des travaux                             
-            $date_fin = $_POST['fin'];                             
+            $date_fin = $_POST['fin'];
+            // Variable contenat le message d'erreur
+            $error_msg = '';                        
             
 
 
@@ -59,35 +63,72 @@
                             // Insertion de l'url de la photo et de son nom vers la bdd
                             sendReal($file_dest, $file_name_bdd, $titre, $descriptif, $date_debut, $date_fin, $date_ajd, $id);
                             echo '<script>alert("Votre participation a bien été prise en compte")</script>';
-                            echo "<script>location='../welcome.php'</script>";
+                            echo "<script>location='../php/welcome.php'</script>";
                         }
                         else
                         {
-                            echo '<script>alert("Une erreur est survenue lors de la publication de votre réalisation")</script>';
+                            $error_msg = "Une erreur est survenue lors de la publication de votre réalisation";
                         }
                     }
                     else
                     {
-                        echo '<script>alert("Les dates des travaux ne sont pas possibles")</script>';
+                        $error_msg = "Les dates des travaux ne sont pas compatibles";
                     }
                     
                 }
                 else
                 {
-                    echo '<script>alert("Photo trop volumineuse")</script>';
+                    $error_msg = "Photo trop volumineuse";
                 }
             }
             else
             {
-                echo '<script>alert("Extension de fichiers non acceptée")</script>';
+                $error_msg = "Extension de fichiers non acceptée";
             }
             /* =====--- Fin traitement de la photo ---===== */
             
         }
         else
         {
-
-            echo '<script>alert("Information(s) manquante(s)")</script>';
+            $error_msg = "Information(s) manquante(s)";
         }
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souhaitez vous participer</title>
+    <!----===== Boxicons CSS =====---->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <!----===== lien de la fiche de style =====---->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="logo_container">
+        <div class="logo">
+            <img src="../img/logo_gedimat 1.svg">
+        </div>
+    </div>
+    <div class="user">
+        <i class='bx bx-user-circle'></i>
+        <?php echo getPrenom($id) ?>
+    </div>
+    <div class="verif_participation">
+        <form action="#" method="get">
+            <h1 class="verif_title"><?php echo $error_msg ?></h1>
+            <button type="submit" name="return_button">Retour</button>
+        </form>
+    </div>
+</body>
+</html>
+
+<?php
+    if(isset($_GET['return_button']))
+    {
+        echo "<script>location='index.php'</script>";
     }
 ?>
