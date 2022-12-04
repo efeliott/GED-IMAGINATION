@@ -9,6 +9,8 @@
     $error_msg = "";
     // Variable de la date du jour actuel
     $date_ajd = date('Y-m-d');
+    // Lien pour retenter
+    $retry = '';
 ?>
 
 <!DOCTYPE html>
@@ -48,17 +50,20 @@
                     else
                     {
                         $error_msg = "Vous avez déjà participé";
+                        $retry = "Réessayer";
                     }
                 }
                 else
                 {
                     $error_msg = "Nous ne sommes pas dans la période de participation";
+                    $retry = "Réessayer";
                 }
             }
             ?>
             <h1 class="verif_title">Si vous souhaitez participer, cliquer sur le bouton !</h1>
             <h2><?php echo $error_msg ?></h2>
             <button type="submit" name="verif_submit">Participer</button>
+            <a href="welcome.php"><?php echo $retry ?></a>
         </form>
     </div>
 </body>

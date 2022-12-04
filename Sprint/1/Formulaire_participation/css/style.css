@@ -26,12 +26,12 @@ body{
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
+    height: 1100px;
 }
 
 /* ==================== index.php ==================== */
 
 .form{
-    position: fixed;
     display: block;
     justify-content: center;
     align-items: center;
@@ -143,25 +143,26 @@ body{
 
 /* ==================== END index.php ==================== */
 
-.logo_container{
-    position: fixed;
-    display: block;
-}
-
 .logo img{
     width: 200px;
 }
 
 .user{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 10rem;
     border-radius: 3rem;
     padding-left: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 20px;
+    margin-left: 80rem;
     margin-bottom: 15px;
     background-color: var(--form-color);
+}
+
+.user i{
+    margin-right: 10px;
 }
 
 /* ==================== welcome.php ==================== */
@@ -184,9 +185,14 @@ body{
 }
 
 .verif_participation h2{
-    text-decoration: underline;
-    color: red;
+    text-decoration: bold;
+    color: rgb(170, 0, 0);
     font-size: 2rem;
+}
+
+.verif_participation a{
+    text-decoration: none;
+    color: var(--text-color);
 }
 
 .verif_participation button{
