@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Gedimagination</string>
+    <string name="btnImport">Importer les données</string>
+</resources>
